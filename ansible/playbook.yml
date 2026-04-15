@@ -4,8 +4,9 @@
   tasks:
     - name: Copy WAR file to Tomcat
       copy:
-        src: "{{ playbook_dir }}/../target/*.war"
-        dest: "/opt/tomcat/webapps/"
+        src: "/var/snap/jenkins/5013/workspace/MavenAnsibleWebApp1-CICD/target/MavenAnsibleWebApp1.war"
+        dest: "/opt/tomcat/webapps/MavenAnsibleWebApp1.war"
+        remote_src: no
 
     - name: Restart Tomcat
       systemd:
