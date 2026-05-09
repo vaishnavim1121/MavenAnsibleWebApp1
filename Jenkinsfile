@@ -10,6 +10,11 @@ pipeline {
         maven 'Maven'  // Ensure this matches the name configured in Jenkins
     }
     stages {
+        stage('Check Tomcat Service') {
+    steps {
+        sh 'systemctl list-units --type=service | grep -i tomcat'
+    }
+}
         stage('Checkout') {
             steps {
                 git branch: 'master', url: 'https://github.com/vaishnavim1121/MavenAnsibleWebApp1.git'
@@ -33,6 +38,7 @@ pipeline {
                sh 'ansible-playbook ansible/playbook.yml -i ansible/hosts.ini'
             }
         }
+        
 
                   
     }
